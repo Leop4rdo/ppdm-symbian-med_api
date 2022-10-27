@@ -7,8 +7,8 @@ tecnico de desenvolvimento de sistemas do Senai - Jandira com auxilio do profess
 1. clonar o projeto
 2. rodar <code>npm i</code> na raiz do repositório
 3. criar banco de dados com <code>CREATE DATABASE nome_db</code>
-4. alterar as variaveis de acesso em src/adapters/database/data-source.ts
-5. npm start
+4. alterar as variaveis de acesso em <code>src/adapters/database/data-source.ts</code>
+5. <code>npm start</code>
 ## Tecnologias
 - Express
 - Typescript
