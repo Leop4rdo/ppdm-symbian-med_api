@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm'
+import { ILike, Repository } from 'typeorm'
 import Patient from '../../../application/entities/Patient'
 import { AppDataSource } from '../data-source'
 import { PatientListFilter } from '../Filters/PatientFilter'
@@ -14,7 +14,7 @@ export default class PatientRepository {
     async list(query : PatientListFilter) : Promise<PatientModel[]>  { 
         return await this.db.find({
             where : {
-                name : query.name
+                name : (query.name) ? ILike(`${query.name}%`) : undefined
             },
             take : query.limit,
             skip : query.offset
