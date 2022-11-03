@@ -14,7 +14,7 @@ const service = new PatientService(repository)
 
 
 PatientController.get('/patients', async (req : Request, res : Response) => {
-    service.list().then((patients) => {
+    service.list(req.query).then((patients) => {
         const mapped = patients.map((p) => new PatientMinimalOutput(p))
 
         res.json({ status : 200, data : mapped }).status(200)

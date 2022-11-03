@@ -3,6 +3,9 @@ import PatientRepository from "../../adapters/database/repositories/PatientRepos
 import Patient from "../entities/Patient"
 import PatientCreateInput from "../../ports/input/Patient/PatientCreateInput"
 import ValidationError from "../Errors/Validation"
+import { PatientListFilter } from "../../adapters/database/Filters/PatientFilter"
+
+
 
 export default class PatientService {
     private repo : PatientRepository
@@ -11,8 +14,8 @@ export default class PatientService {
         this.repo = repo
     }
 
-    async list() : Promise<Patient[]>{
-        return await this.repo.list()
+    async list(query ?: PatientListFilter) : Promise<Patient[]>{
+        return await this.repo.list(query)
     }
 
     async findById(id : string) : Promise<Patient> {
