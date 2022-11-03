@@ -2,6 +2,7 @@
 import {Router, Request, Response} from 'express'
 import PatientRepository from '../../adapters/database/repositories/PatientRepository'
 import PatientCreateInput from '../../ports/input/Patient/PatientCreateInput'
+import PatientMinimalOutput from '../../ports/output/patient/PatientMinimalOutput'
 import PatientOutput from '../../ports/output/patient/PatientOutput'
 import IPatientProps from '../entities/interfaces/IPatient'
 import { handleErrors } from '../Errors'
@@ -11,11 +12,10 @@ const PatientController = Router()
 const repository = new PatientRepository()
 const service = new PatientService(repository)
 
-const mapListToOutput = (patients : IPatientProps[]) => patients.map((patient) => new PatientOutput(patient))
 
 PatientController.get('/patients', async (req : Request, res : Response) => {
     service.list().then((patients) => {
-        const mapped = mapListToOutput(patients)
+        const mapped = patients.map((p) => new PatientMinimalOutput(p))
 
         res.json({ status : 200, data : mapped }).status(200)
 

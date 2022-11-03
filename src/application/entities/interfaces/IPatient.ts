@@ -1,3 +1,5 @@
+import { Timestamp } from "typeorm"
+
 export default interface IPatientProps {
     id ?: string
     name : string
@@ -6,4 +8,6 @@ export default interface IPatientProps {
     email : string
     responsibleName : string
     responsiblePhone : string
+    createdAt ?: Timestamp
+    updatedAt ?: Timestamp
 }
